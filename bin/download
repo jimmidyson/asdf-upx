@@ -104,6 +104,12 @@ download() {
   declare -r download_version="$2"
   declare -r download_path="$3"
 
+  declare platform="$(get_platform)";
+  if [ "${platform}" == "darwin" ]; then
+    echo "upx asdf plugin is not supported on MacOS"
+    return
+  fi
+
   if [ "$download_type" == "version" ]; then
     declare -r download_url="$(find_file_url "$download_version")"
     if [ -z "$download_url" ]; then
@@ -117,7 +123,6 @@ download() {
     fi
     local tmp_download_path="$tmp_download_dir/$(basename "$download_url")"
     curl -fLo "$tmp_download_path" "$download_url"
-    declare -r platform="$(get_platform)"
     mkdir -p "$download_path/bin"
     pushd "$tmp_download_dir"
     if [[ $platform == "linux" ]]; then
