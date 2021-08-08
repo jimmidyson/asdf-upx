@@ -1,4 +1,4 @@
-# asdf-jq
+# asdf-upx
 
 ![](https://github.com/jimmidyson/asdf-upx/workflows/ci/badge.svg)
 
