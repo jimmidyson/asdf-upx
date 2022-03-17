@@ -26,8 +26,8 @@ install() {
 
     declare platform="$(get_platform)";
     if [ "${platform}" == "darwin" ]; then
-      echo "symlinking /bin/true to upx to not break workflows"
-      ln -s /usr/bin/true "$install_path/bin/upx"
+      brew install upx
+      ln -s "$(brew --prefix)"/bin/upx "$install_path/bin/upx"
       return
     fi
 

@@ -106,7 +106,6 @@ download() {
 
   declare platform="$(get_platform)";
   if [ "${platform}" == "darwin" ]; then
-    echo "upx asdf plugin is not supported on MacOS"
     return
   fi
 
