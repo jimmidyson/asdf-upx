@@ -7,7 +7,7 @@
 ## Install
 
 ```
-asdf plugin-add jq https://github.com/jimmidyson/asdf-upx.git
+asdf plugin-add upx https://github.com/jimmidyson/asdf-upx.git
 ```
 
 ## Use
