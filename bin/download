@@ -115,7 +115,7 @@ download() {
       error_exit "Malformed URL"
     fi
     if [ -z "${TMPDIR:-}" ]; then
-      tmp_download_dir=$(mktemp -d -t upx_XXXXXXX)
+      tmp_download_dir=$(mktemp -d -p "${TMPDIR:-/tmp}" upx_XXXXXXX)
       trap 'rm -rf $tmp_download_dir' EXIT
     else
       local tmp_download_dir=$TMPDIR
@@ -123,7 +123,7 @@ download() {
     local tmp_download_path="$tmp_download_dir/$(basename "$download_url")"
     curl -fLo "$tmp_download_path" "$download_url"
     mkdir -p "$download_path/bin"
-    pushd "$tmp_download_dir"
+    pushd "$tmp_download_dir" &>/dev/null
     if [[ $platform == "linux" ]]; then
       tar xJf "$tmp_download_path"
     else
